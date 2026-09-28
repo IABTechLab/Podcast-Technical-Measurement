@@ -29,91 +29,38 @@ Please contact support@iabtechlab.com if you have any questions or comments abou
 
 The IAB Podcast Measurement Technical Guidelines document was developed by the IAB Tech Lab Podcast Technical Working Group, in partnership with the IAB Audio Committee. The following IAB Tech Lab member companies contributed to the update of this document:
 
-- A+E Networks
-- Acast
-- ACPM
-- Ad Results Media
-- Adelaide
-- AdLarge Media
-- AdsWizz
-- Algorix
-- ART19
-- Audacy
-- Audio Alliance GmbH
-- Audion
-- Audit Bureau of Circulations (ABC) UK
-- Barometer
-- Barstool Sports
-- CBC Radio Canada
-- Centillion
-- Chartable
-- Dailymotion
-- Doceree
-- DoubleVerify
-- Epsilon
-- ESPN
-- Experian Marketing Services
-- Extreme Reach
-- Global Media & Entertainment
-- Google LLC
-- GroupM US
-- Hearst
-- Hubhopper
-- IAB Germany
-- IAB Tech Lab
-- IAB UK
-- iHeartMedia
-- Julep Media GmbH
-- Jun Group
-- SIFO Fifty5Blue
-- Katz Media Group
-- Kinesso
-- Libsyn
-- Lucid
-- Magellan AI
-- Media.net Advertising FZ LLC
-- National Public Media
-- NBCUniversal
-- New York Public Radio
-- News UK
-- Nexxen
-- Nielsen
-- Nova Entertainment
-- NPR
-- Omny Studio
-- Oracle Advertising & Customer Experience
-- Paramount
-- Podigee GmbH
-- Podscribe
-- Podtrac
-- Protected Media
-- Publicis Media
-- Pyler Co., Ltd
-- RawVoice
-- Rebel Base Media
-- Remixd
-- ResponsiveAds
-- SiriusXM Media
-- Slate
-- Sony Music Entertainment
-- Sounder
-- Sounds Profitable
-- Soundstack
-- Spotify
-- Spreaker
-- StackAdapt
-- The Daily Wire
-- The Inquirer
-- The New York Times Company
-- The Trade Desk
-- TripleLift
-- Triton Digital
-- Veritonic
-- VRTCAL
-- Warner Bros. Discovery
-- Westwood One
-- WideOrbit
-- Xaxis
+
+||||
+|---|---|---|
+| A+E Networks | Hubhopper | Pyler Co., Ltd |
+| Acast | IAB Germany | RawVoice |
+| ACPM | IAB UK | Rebel Base Media |
+| Ad Results Media | iHeartMedia | Remixd |
+| Adelaide | Julep Media GmbH | ResponsiveAds |
+| AdLarge Media | Jun Group | SiriusXM Media |
+| AdsWizz | SIFO Fifty5Blue | Slate |
+| Algorix | Katz Media Group | Sony Music Entertainment |
+| ART19 | Kinesso | Sounder |
+| Audacy | Libsyn | Sounds Profitable |
+| Audio Alliance GmbH | Lucid | Soundstack |
+| Audion | Magellan AI | Spotify |
+| Audit Bureau of Circulations (ABC) UK | Media.net Advertising FZ LLC | Spreaker |
+| Barometer | National Public Media | StackAdapt |
+| Barstool Sports | NBCUniversal | The Daily Wire |
+| CBC Radio Canada | New York Public Radio | The Inquirer |
+| Centillion | News UK | The New York Times Company |
+| Chartable | Nexxen | The Trade Desk |
+| Dailymotion | Nielsen | TripleLift |
+| Doceree | Nova Entertainment | Triton Digital |
+| DoubleVerify | NPR | Veritonic |
+| Epsilon | Omny Studio | VRTCAL |
+| ESPN | Oracle Advertising & Customer Experience | Warner Bros. Discovery |
+| Experian Marketing Services | Paramount | Westwood One |
+| Extreme Reach | Podigee GmbH | WideOrbit |
+| Global Media & Entertainment | Podscribe | Xaxis |
+| Google LLC | Podtrac |  |
+| GroupM US | Protected Media |  |
+| Hearst |Publicis Media  |  |
 
 A list of current members subscribed to the Podcast Technical Working Group can be found at https://iabtechlab.com/working-groups/podcast-technical-working-group/
 
@@ -301,7 +248,7 @@ Validation of this measurement method is distinct from working with podcast host
 
 The diagram below maps out how prefix measurement is executed. While each third-party measurement vendor may handle their process a little differently, the diagram below represents how a download request moves from a user’s device through the two platforms. Each step holds the potential for recording slightly different details.
 
-[IMAGE: URL Prefix Measurement Process Diagram]
+![](https://github.com/IABTechLab/Podcast-Technical-Measurement/blob/main/images/2.3/5-2-Diagram.png)
 
 1. **Initial Request to Redirect Measurement Platform:**
 
@@ -339,7 +286,8 @@ In the podcast ecosystem, the enclosure URL in an RSS feed serves as a key point
 
 While most publishers maintain consistent URL structures, any variation can propagate unintended effects through the ecosystem.
 
-**Best Practice:** Avoid changing episode GUIDs during hosting changes. If possible, also avoid changing episode titles and publication dates, as different podcatchers use different heuristics for determining if an episode is the same as one previously encountered.
+>[!TIP]
+>**Best Practice:** Avoid changing episode GUIDs during hosting changes. If possible, also avoid changing episode titles and publication dates, as different podcatchers use different heuristics for determining if an episode is the same as one previously encountered.
 
 ### 5.4 Invalid Traffic
 
@@ -437,7 +385,8 @@ Metrics providers must filter out the following:
 6. Some apps perform a 2 byte range request (Range: 0-1) to check if the media file can be downloaded using byte range requests. This kind of request is often immediately followed by one or more additional range requests. Disregard any 2 byte (0-1 byte) range requests. These requests don’t represent a valid download.
 7. Duplicates on paired Apple Watch devices indicated by UA’s that begin with atc/ and include watchOS (/for example atc/1.0 watchOS/), or UA’s that contain (null)/(null) watchOS
 
-**Note:** Known “safe” IP Addresses (dorms, corporations, etc.) should be maintained in an inclusion-list and be allowed for counting. These inclusion lists must be re-validated at least every 90 days since IP addresses may not be static. Keep a record of list re-validation to share with customers and partners to indicate efforts for combating invalid traffic.
+>[!TIP]
+>**Note:** Known “safe” IP Addresses (dorms, corporations, etc.) should be maintained in an inclusion-list and be allowed for counting. These inclusion lists must be re-validated at least every 90 days since IP addresses may not be static. Keep a record of list re-validation to share with customers and partners to indicate efforts for combating invalid traffic.
 
 #### Step 1.3: Handling HTTP Requests
 
@@ -462,9 +411,11 @@ This step requires a continuous monitoring of the podcasts as each episode gets 
 
 **Alternatively,** if the podcast episode is shorter than 1 minute or if it isn’t possible to compute the file and ID3 sizes regularly, **_complete file downloads_** (100% of the file, including the ID3 tag or other header information) should be used.
 
-**Note:** One minute was chosen as a conservative minimum size since other mediums use similar or smaller thresholds.
+>[!TIP]
+>**Note:** One minute was chosen as a conservative minimum size since other mediums use similar or smaller thresholds.
 
-**Note:** When byte range request data is not available, more advanced algorithms that factor in a correction for partially downloaded content may be used. Such a system must disclose how their system overcomes not having the byte range data.
+>[!TIP]
+>**Note:** When byte range request data is not available, more advanced algorithms that factor in a correction for partially downloaded content may be used. Such a system must disclose how their system overcomes not having the byte range data.
 
 #### 5.5.4 Step 3: Identify and aggregate uniques
 
@@ -504,7 +455,8 @@ The Podcast Technical Working Group has researched methods to address potential 
 
 The best way to handle IPv6 addresses is to truncate it to its first 64 bits before calculating. The IP addresses used in calculating metrics is a combination of full IPv4 IP addresses along with partial IPv6 addresses truncated to 64 bits.
 
-**Note:** IPv4 or partial IPv6 addresses can be hashed for privacy reasons without affecting the above formulas. Truncating IPv6 addresses to 64 bits may result in a few duplicated podcast consumers; however, our research has shown that results are comparable to the results for non-truncated IPv4 calculations. Ultimately, metrics providers must be transparent about the methodology used.
+>[!TIP]
+>**Note:** IPv4 or partial IPv6 addresses can be hashed for privacy reasons without affecting the above formulas. Truncating IPv6 addresses to 64 bits may result in a few duplicated podcast consumers; however, our research has shown that results are comparable to the results for non-truncated IPv4 calculations. Ultimately, metrics providers must be transparent about the methodology used.
 
 #### 5.5.5 Step 4: Generate Metrics
 
@@ -555,9 +507,8 @@ HTTP requests include the IP address of the client device receiving the file and
 
 2. **Podcast Consumer/Listener:** data that represents a single user who downloads content (for immediate or delayed consumption). Podcast consumers/listeners are represented by the unique combination of IP address and User Agent as described in section 5, step 3. Podcast consumers/listeners must be specified within a stated time frame (day, week, month, etc.).
 
-**Note:** The nature of podcast consumption involves consumers on mobile devices, which means that the IP addresses change frequently for each consumer, or what we call “IP-hopping.” IP-hopping can result in double counting consumers, but IP addresses can also be recycled, resulting in undercounting podcast consumers/listeners. These factors can be difficult to account for.
-
-Shorter time frames can produce better results while longer time frames exacerbate the issue. The time frame within which counts are provided should be disclosed to customers.
+>[!TIP]
+>**Note:** The nature of podcast consumption involves consumers on mobile devices, which means that the IP addresses change frequently for each consumer, or what we call “IP-hopping.” IP-hopping can result in double counting consumers, but IP addresses can also be recycled, resulting in undercounting podcast consumers/listeners. These factors can be difficult to account for. Shorter time frames can produce better results while longer time frames exacerbate the issue. The time frame within which counts are provided should be disclosed to customers.
 
 #### Podcast Consumer/Listener Metric using IPv6 Addresses
 
@@ -577,7 +528,8 @@ For example, if an ad was included within the first 25% of a podcast and at leas
 
 When ads are dynamically inserted into the podcast episode or within an ad break within the podcast, 100% of the ad content (all bytes) must be downloaded before it may be counted as delivered.
 
-**Note:** An ad can only ever be counted as “ad delivered” if the download it belongs to is determined to be valid. For example, if a 30 second pre-roll ad was included in a download that never got 1 full min downloaded, the ad cannot be counted as valid even if the ad itself was fully downloaded.
+>[!TIP]
+>**Note:** An ad can only ever be counted as “ad delivered” if the download it belongs to is determined to be valid. For example, if a 30 second pre-roll ad was included in a download that never got 1 full min downloaded, the ad cannot be counted as valid even if the ad itself was fully downloaded.
 
 4. **Client-Confirmed Ad Play:** counts an ad that was able to prompt a tracking beacon from the client device when the file was played. Whenever possible, this metric should include information about how much of the ad was played. Sufficient granularity might be markers indicating: ad start, first quartile (25%), midpoint (50%), third quartile (75%), and complete (100%).
 
