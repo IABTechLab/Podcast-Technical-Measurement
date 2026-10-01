@@ -1,7 +1,7 @@
 ![IAB Tech Lab](https://drive.google.com/uc?id=10yoBoG5uRETSXRrnJPUDuONujvADrSG1)
 # Podcast Technical Measurement Guidelines
 
-Version 2.3
+Version 2.3 - Published 9/29/2026
 
 © 2026 IAB Tech Lab
 
@@ -144,7 +144,7 @@ The first version of this document was released in September 2016. Additional si
 - Clarified this document covers video when distributed via open RSS feeds or podcast applications that rely on server-side file delivery
 - Replace the term “listener” with “podcast consumer” to describe both listeners (audio) and viewers (video) of podcasts
 - Describes prefix URL redirect method in section 5.2 to help understand discrepancies
-- Section 5.2 describes Enclosure URLs in RSS feed servers and their impact on measurement
+- Section 5.3 describes Enclosure URLs in RSS feed servers and their impact on measurement
 - Section 5.4 describes common fraudulent activity types and existing standards to further assess anomalies which may be legitimate activities
 - Section 5.5.1 describes three measurement window types used in counting downloads and demonstrates with examples how they are applied for measurement
 
@@ -395,7 +395,7 @@ Different types of HTTP requests indicate different kinds of behavior in the ser
 1. HEAD requests: typically used to check for changes. No data is transferred in a HEAD request, so these requests should be excluded.
 2. GET requests:
    - a. 200 (ok request) in a non-HLS context: valid count for downloads
-   - b. 206 (partial request) or 200 (ok request) in a HLS context: only count if the download covers the 1-minute rule defined in 1.2 above, and de-duplication based on IP Address/UA to cover cases where the podcast consumer might be skipping ahead. Determining whether the requests cover the 1-minute requirement might require reassembling requests.
+   - b. 206 (partial request) or 200 (ok request) in a HLS context: only count if the download covers the 1-minute rule defined in 1.1 above, and de-duplication based on IP Address/UA to cover cases where the podcast consumer might be skipping ahead. Determining whether the requests cover the 1-minute requirement might require reassembling requests.
    - c. 304 (not modified request) - signal that the user has an existing file and wants to see if it changed. These should not be counted.
 3. There may also be platform specific quirks to watch for. For example, Akamai uses a HTTP code of 000 for 206 requests that ended prematurely.  These requests can only be counted if they pass all measurement filters.
 
